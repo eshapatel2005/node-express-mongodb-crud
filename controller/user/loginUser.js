@@ -35,7 +35,7 @@ const loginUser = async (req, res) => {
             });
         }
 
-        // Find User By Email
+        // Check Email
         const user = await User.findOne({
             email: req.body.email
         });
@@ -47,7 +47,7 @@ const loginUser = async (req, res) => {
             });
         }
 
-        // Compare Password
+        // Check Password
         const isMatch = await bcrypt.compare(
             req.body.password,
             user.password
@@ -63,8 +63,7 @@ const loginUser = async (req, res) => {
         // Login Success
         res.status(200).json({
             success: true,
-            message: "Login Successful",
-            data: user
+            message: "Login Successful"
         });
 
     } catch (err) {
