@@ -10,7 +10,7 @@ const loginUser = require("../controller/user/loginUser");
 const { auth } = require("../middleware/auth");
 
 router.post("/createUser",createUser);
-router.get("/getUser",getUser);
+router.get("/getUser",auth,getUser);
 router.put("/updateUser/:id",updateUser);
 router.delete("/deleteUser/:id",deleteUser);
 router.get("/getUser/:id", getUser);

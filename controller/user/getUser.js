@@ -12,18 +12,9 @@ const validateGetUser = (data) => {
 
 const getUser = async (req, res) => {
   try {
-    const { error } = validateGetUser(req.params);
-
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.details[0].message,
-      });
-    }
 
     // If Id is given than fetch that particular user
-    if (req.params.id) {
-      const user = await User.findById(req.params.id);
+      const user = await User.findById(req.user.id).select("-password -token");
 
       if (!user) {
         return res.status(404).json({
@@ -36,15 +27,7 @@ const getUser = async (req, res) => {
         success: true,
         data: user,
       });
-    }
 
-    // if id is not mentioned then fetch all the users
-    const users = await User.find();
-
-    res.status(200).json({
-      success: true,
-      data: users,
-    });
   } catch (err) {
     res.status(500).json({
       success: false,
