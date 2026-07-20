@@ -16,5 +16,6 @@ router.delete("/deleteUser",auth,deleteUser);
 //router.get("/getUser/:id", getUser);
 router.post("/loginUser", loginUser);
 //router.get("/currentUser", auth, currentUser.currentUser);
+//router.get("("/currentUser",auth,currentUser.currentUser);
 
 module.exports=router;
