@@ -5,10 +5,12 @@ const router = express.Router();
 const createProduct = require("../controller/product/createProduct");
 const getProduct=require("../controller/product/getProduct");
 const updateProduct = require("../controller/product/updateProduct");
+const deleteProduct=require("../controller/product/deleteProduct");
 
 // Create Product
 router.post("/createProduct", createProduct);
 router.get("/getProduct/:id", getProduct);
-router.put("/updateProduct/:id",updateProduct)
+router.put("/updateProduct/:id",updateProduct);
+router.delete("/deleteProduct/:id",deleteProduct);
 
 module.exports = router;

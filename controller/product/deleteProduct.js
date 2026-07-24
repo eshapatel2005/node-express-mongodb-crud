@@ -2,18 +2,18 @@ const Product=require("../../models/product.model");
 
 const deleteProduct=async(req,res)=>{
     try{
-        const product=await Product.findByIdAndDelete(req.param.id);
+        const product=await Product.findByIdAndDelete(req.params.id);
 
         if(!product){
             return res.status(404).json({
                 success:false,
-                message:"User not found"
+                message:"Product not found"
             });
         }
 
         res.status(200).json({
             success:true,
-            message:"User deleted successfully"
+            message:"Product deleted successfully"
         });
     }
     catch(err){
