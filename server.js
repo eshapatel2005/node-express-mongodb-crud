@@ -11,14 +11,18 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// User Routes
 const userRouter = require("./routes/users.routes");
 
-app.use("/api/v1/user",userRouter);
+// Product Routes
+const productsRouter = require("./routes/products.routes");
+
+// Routes
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/product", productsRouter);
 
 const PORT = process.env.PORT || 8001;
 
-app.listen(PORT,()=>{
-
+app.listen(PORT, () => {
     console.log(`Server Running At PORT : ${PORT}`);
-
 });
