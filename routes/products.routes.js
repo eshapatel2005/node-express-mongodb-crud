@@ -7,8 +7,11 @@ const getProduct=require("../controller/product/getProduct");
 const updateProduct = require("../controller/product/updateProduct");
 const deleteProduct=require("../controller/product/deleteProduct");
 
+const { auth } = require("../middleware/auth");
+
+
 // Create Product
-router.post("/createProduct", createProduct);
+router.post("/createProduct",auth, createProduct);
 router.get("/getProduct/:id", getProduct);
 router.put("/updateProduct/:id",updateProduct);
 router.delete("/deleteProduct/:id",deleteProduct);
