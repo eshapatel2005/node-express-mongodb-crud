@@ -29,10 +29,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
-    created_by:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"User",
-    }
+
   },
   {
     timestamps: true,
