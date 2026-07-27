@@ -31,11 +31,7 @@ const updateProduct = async (req, res) => {
             });
         }
 
-        const product = await Product.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        );
+        const product = await Product.findByIdAndUpdate(req.params.id,req.body,{ new: true });
 
         if (!product) {
             return res.status(404).json({
