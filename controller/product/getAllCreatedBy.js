@@ -10,6 +10,7 @@ const getAllCreatedBy = async (req, res) => {
 
         res.status(200).json({
             success: true,
+            message:"Product fetched successfully",
             data: products
         });
 
