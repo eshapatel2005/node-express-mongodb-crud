@@ -9,7 +9,7 @@ const uploadController = {
             obj["data"] = req.files[key].map((v) => {
                 return {
                     path: v.path.replace(/\\/g, "/"),
-                    filename: v.filename,
+                    filename    : v.filename,
                     mimetype: v.mimetype
                 }
             })
