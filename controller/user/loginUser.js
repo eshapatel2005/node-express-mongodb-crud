@@ -28,6 +28,7 @@ const loginUser = async (req, res) => {
       });
     }
 
+    
     // Check Email
     const user = await User.findOne({
       email: req.body.email,
