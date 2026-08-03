@@ -60,6 +60,16 @@ const createUser = async (req, res) => {
         // Create User
         const user = await User.create(req.body);
 
+        // Generate JWT Token
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.USER_AUTH_TOKEN
+        );
+
+        // Save Token in Database
+        user.token = token;
+        await user.save();
+
         res.status(201).json({
             success: true,
             message: "User Created Successfully",
