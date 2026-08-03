@@ -26,5 +26,5 @@ const uploadController = {
         }
     }
 }
-
+ 
 module.exports = uploadController;

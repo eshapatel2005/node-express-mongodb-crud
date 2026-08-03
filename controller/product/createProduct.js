@@ -10,7 +10,10 @@ const validateCreateProduct = (data) => {
 
         price: Joi.number().required(),
 
-        description: Joi.string().required()
+        description: Joi.string().required(),
+
+        image: Joi.string(),
+        other_image: Joi.array().items(Joi.string()),
 
     });
 
