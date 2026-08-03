@@ -53,6 +53,10 @@ const loginUser = async (req, res) => {
     // Generate JWT Token
     const token = jwt.sign({ id: user._id }, process.env.USER_AUTH_TOKEN);
 
+    // Save Token in Database
+      user.token = token;
+      await user.save();
+
     // Login Success
     res.status(200).json({
       success: true,
