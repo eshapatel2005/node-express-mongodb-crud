@@ -1,6 +1,7 @@
 const User = require("../../models/user.model");
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // Validation Function
 const validateCreateUser = (data) => {
