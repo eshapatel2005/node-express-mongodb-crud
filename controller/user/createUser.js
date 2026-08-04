@@ -2,6 +2,7 @@ const User = require("../../models/user.model");
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const {sendEmail} = require("../../utils/mail.helper");
 
 // Validation Function
 const validateCreateUser = (data) => {
@@ -69,6 +70,15 @@ const createUser = async (req, res) => {
         // Save Token in Database
         user.token = token;
         await user.save();
+
+        const message = `Your registration successfully`;
+            const mailObj = {
+                from: `CRUD API ${process.env.FROM_MAIL}`,
+                to: req.body.email,
+                subject: "User Created Successfully",
+                html: message,
+              }
+            await sendEmail(mailObj);
 
         res.status(201).json({
             success: true,
