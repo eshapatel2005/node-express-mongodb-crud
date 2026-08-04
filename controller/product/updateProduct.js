@@ -1,5 +1,6 @@
 const Product = require("../../models/product.model");
 const Joi = require("joi");
+const { sendEmail } = require("../../utils/mail.helper");
 
 // Validation Function
 const validateUpdateProduct = (data) => {
@@ -31,7 +32,11 @@ const updateProduct = async (req, res) => {
             });
         }
 
-        const product = await Product.findByIdAndUpdate(req.params.id,req.body,{ new: true });
+        const product = await Product.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
 
         if (!product) {
             return res.status(404).json({
@@ -39,6 +44,23 @@ const updateProduct = async (req, res) => {
                 message: "Product Not Found"
             });
         }
+
+        // Send Email
+        const message = `
+            <h2>Product Updated Successfully</h2>
+            <p>Your product <b>${product.name}</b> has been updated successfully.</p>
+            <p>Price: ₹${product.price}</p>
+            <p>Description: ${product.description}</p>
+        `;
+
+        const mailObj = {
+            from: `CRUD API ${process.env.FROM_MAIL}`,
+            to: req.user.email,
+            subject: "Product Updated Successfully",
+            html: message,
+        };
+
+        await sendEmail(mailObj);
 
         res.status(200).json({
             success: true,
