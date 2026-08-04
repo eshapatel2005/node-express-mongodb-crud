@@ -40,6 +40,8 @@ const createProduct = async (req, res) => {
             <p>Your product <b>${product.name}</b> has been created successfully.</p>
             <p>Price: ₹${product.price}</p>
             <p>Description: ${product.description}</p>
+            <p>Images: ${product.image}</p>
+            <p>Other Images: ${product.other_image.join(", ")}</p>
         `;
 
         const mailObj = {
