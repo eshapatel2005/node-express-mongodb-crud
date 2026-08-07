@@ -14,7 +14,7 @@ const { auth } = require("../middleware/auth");
 router.post("/createProduct",auth, createProduct);
 router.get("/getProduct/:id", getProduct);
 router.get("/getAllCreatedBy", auth, getAllCreatedBy);
-router.put("/updateProduct/:id",updateProduct);
+router.put("/updateProduct/:id",auth,updateProduct);
 router.delete("/deleteProduct/:id",deleteProduct);
 
 module.exports = router;

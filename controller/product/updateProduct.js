@@ -11,7 +11,9 @@ const validateUpdateProduct = (data) => {
 
         price: Joi.number(),
 
-        description: Joi.string()
+        description: Joi.string(),
+        image: Joi.string(),
+        other_image: Joi.array().items(Joi.string())
 
     });
 
@@ -51,6 +53,8 @@ const updateProduct = async (req, res) => {
             <p>Your product <b>${product.name}</b> has been updated successfully.</p>
             <p>Price: ₹${product.price}</p>
             <p>Description: ${product.description}</p>
+            <p>Image: ${product.image}</p>
+            <p>Other_Image: ${product.other_image}</p>
         `;
 
         const mailObj = {
