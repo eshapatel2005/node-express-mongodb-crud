@@ -62,6 +62,8 @@ const createProduct = async (req, res) => {
       data: product,
     });
   } catch (err) {
+    conole.error("Error in createProduct controller:", err.message);
+    conole.error("Error in createProduct controller:", err.stack);
     res.status(500).json({
       success: false,
       message: err.message,
