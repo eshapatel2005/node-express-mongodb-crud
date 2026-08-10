@@ -7,6 +7,8 @@ dotenv.config();
 
 require("./database/connection");
 
+require("./cron/report");
+
 const app = express();
 
 app.use(express.json());
