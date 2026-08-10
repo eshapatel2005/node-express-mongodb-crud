@@ -5,7 +5,7 @@ const Product = require("../models/product.model");
 
 const { sendEmail } = require("../utils/mail.helper");
 
-cron.schedule("*/5 * * * *", async () => {
+cron.schedule("*/30 * * * *", async () => {
   try {
     // Count Users
     const userCount = await User.countDocuments();
