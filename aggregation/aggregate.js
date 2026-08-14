@@ -7,6 +7,7 @@ mongoose
   .then(async () => {
     console.log("MongoDB Connected Successfully");
 
+    // STEP 1 - Aggregate()
     const result = await User.aggregate([
       {
         $match: {
@@ -14,8 +15,8 @@ mongoose
         },
       },
     ]);
-
     console.log(result);
+
     mongoose.connection.close();
   })
   .catch((err) => {
