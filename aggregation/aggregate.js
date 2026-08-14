@@ -17,13 +17,22 @@ mongoose
     // ]);
 
     // STEP 2 - addFields()
+    // const result = await User.aggregate([
+    //   {
+    //     $addFields: {
+    //       ageAfter5Years: { $add: ["$age", 5] },
+    //     },
+    //   },
+    // ]);
+
+    // STEP 3 - allowDiskUse()
     const result = await User.aggregate([
       {
-        $addFields: {
-          ageAfter5Years: { $add: ["$age", 5] },
+        $match: {
+          age: { $gt: 18 },
         },
       },
-    ]);
+    ]).allowDiskUse(true);
     console.log(result);
 
     mongoose.connection.close();
