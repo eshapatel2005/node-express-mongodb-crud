@@ -51,11 +51,20 @@ mongoose
     // });
 
     // STEP 6 - count()
+    // const result = await User.aggregate([
+    //   {
+    //     $count: "totalUsers",
+    //   },
+    // ]);
+
+    // STEP 7 - exec()
     const result = await User.aggregate([
       {
-        $count: "totalUsers",
+        $match: {
+          age: { $gt: 18 },
+        },
       },
-    ]);
+    ]).exec();
 
     console.log(result);
 
