@@ -5,7 +5,6 @@ const User = require("../models/user.model");
 mongoose
   .connect(process.env.MONGO_URL)
   .then(async () => {
-    console.log("MongoDB Connected Successfully");
 
     // STEP 1 - Aggregate()
     // const result = await User.aggregate([
@@ -26,13 +25,19 @@ mongoose
     // ]);
 
     // STEP 3 - allowDiskUse()
-    const result = await User.aggregate([
-      {
-        $match: {
-          age: { $gt: 18 },
-        },
-      },
-    ]).allowDiskUse(true);
+    // const result = await User.aggregate([
+    //   {
+    //     $match: {
+    //       age: { $gt: 18 },
+    //     },
+    //   },
+    // ]).allowDiskUse(true);
+
+    // STEP 4 - append()
+    const result = await User.aggregate().append(
+      { $match: { age: { $gt: 18 } } },
+      { $project: { name: 1, age: 1, city: 1, _id: 0 } },
+    );
     console.log(result);
 
     mongoose.connection.close();
