@@ -8,10 +8,12 @@ const { sendEmail } = require("../utils/mail.helper");
 cron.schedule("*/30 * * * *", async () => {
   try {
     // Count Users
-    const userCount = await User.countDocuments();
+    const userCount = await User.find({ createdAt: { $gte: new Date(Date.now() - 30 * 60 * 1000) }  }).countDocuments();
 
     // Count Products
-    const productCount = await Product.countDocuments();
+    const productCount = await Product.find({ createdAt: { $gte: new Date(Date.now() - 30 * 60 * 1000) }  }).countDocuments();
+    const date = new Date();
+
 
     // Email message
     const message = `
