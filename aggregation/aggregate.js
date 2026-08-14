@@ -5,7 +5,6 @@ const User = require("../models/user.model");
 mongoose
   .connect(process.env.MONGO_URL)
   .then(async () => {
-
     // STEP 1 - Aggregate()
     // const result = await User.aggregate([
     //   {
@@ -34,10 +33,22 @@ mongoose
     // ]).allowDiskUse(true);
 
     // STEP 4 - append()
-    const result = await User.aggregate().append(
-      { $match: { age: { $gt: 18 } } },
-      { $project: { name: 1, age: 1, city: 1, _id: 0 } },
-    );
+    // const result = await User.aggregate().append(
+    //   { $match: { age: { $gt: 18 } } },
+    //   { $project: { name: 1, age: 1, city: 1, _id: 0 } },
+    // );
+
+    // STEP 5 - collation()
+    const result = await User.aggregate([
+      {
+        $sort: {
+          name: 1,
+        },
+      },
+    ]).collation({
+      locale: "en",
+      strength: 1,
+    });
     console.log(result);
 
     mongoose.connection.close();
