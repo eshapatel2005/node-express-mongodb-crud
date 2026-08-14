@@ -10,9 +10,9 @@ mongoose
     const result = await User.aggregate([
       {
         $match: {
-          age: { $gt: 18 }
-        }
-      }
+          age: { $gt: 18 },
+        },
+      },
     ]);
 
     console.log(result);
