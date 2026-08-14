@@ -39,16 +39,24 @@ mongoose
     // );
 
     // STEP 5 - collation()
+    // const result = await User.aggregate([
+    //   {
+    //     $sort: {
+    //       name: 1,
+    //     },
+    //   },
+    // ]).collation({
+    //   locale: "en",
+    //   strength: 1,
+    // });
+
+    // STEP 6 - count()
     const result = await User.aggregate([
       {
-        $sort: {
-          name: 1,
-        },
+        $count: "totalUsers",
       },
-    ]).collation({
-      locale: "en",
-      strength: 1,
-    });
+    ]);
+
     console.log(result);
 
     mongoose.connection.close();
