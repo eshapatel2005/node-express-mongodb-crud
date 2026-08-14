@@ -8,10 +8,19 @@ mongoose
     console.log("MongoDB Connected Successfully");
 
     // STEP 1 - Aggregate()
+    // const result = await User.aggregate([
+    //   {
+    //     $match: {
+    //       age: { $gt: 18 },
+    //     },
+    //   },
+    // ]);
+
+    // STEP 2 - addFields()
     const result = await User.aggregate([
       {
-        $match: {
-          age: { $gt: 18 },
+        $addFields: {
+          ageAfter5Years: { $add: ["$age", 5] },
         },
       },
     ]);
