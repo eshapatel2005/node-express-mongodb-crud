@@ -5,14 +5,14 @@ const Product = require("../models/product.model");
 
 const { sendEmail } = require("../utils/mail.helper");
 
-cron.schedule("*/30 * * * *", async () => {
+cron.schedule("*/60 * * * *", async () => {
   try {
     // Count Users
     const userCount = await User.find({ createdAt: { $gte: new Date(Date.now() - 30 * 60 * 1000) }  }).countDocuments();
 
     // Count Products
     const productCount = await Product.find({ createdAt: { $gte: new Date(Date.now() - 30 * 60 * 1000) }  }).countDocuments();
-    const date = new Date();
+    const date = new Date();  
 
 
     // Email message
