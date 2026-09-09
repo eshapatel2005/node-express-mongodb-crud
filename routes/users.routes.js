@@ -2,11 +2,13 @@ const express = require("express");
 
 const router = express.Router();
 
-const createUser = require("../controller/user/createUser");
-const getUser = require("../controller/user/getUser");
-const updateUser = require("../controller/user/updateUser");
-const deleteUser = require("../controller/user/deleteUser");
-const loginUser = require("../controller/user/loginUser");
+const {
+  createUser,
+  getUser,
+  updateUser,
+  deleteUser,
+  loginUser,
+} = require("../controller/user");
 const { auth } = require("../middleware/auth");
 
 router.post("/createUser",createUser);
