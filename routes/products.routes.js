@@ -2,11 +2,13 @@ const express = require("express");
 
 const router = express.Router();
 
-const createProduct = require("../controller/product/createProduct");
-const getProduct=require("../controller/product/getProduct");
-const updateProduct = require("../controller/product/updateProduct");
-const deleteProduct=require("../controller/product/deleteProduct");
-const getAllCreatedBy = require("../controller/product/getAllCreatedBy");
+const {
+  createProduct,
+  getProduct,
+  updateProduct,
+  deleteProduct,
+  getAllCreatedBy,
+} = require("../controller/product");
 const { auth } = require("../middleware/auth");
 
 
